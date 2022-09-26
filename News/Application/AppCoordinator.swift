@@ -29,8 +29,8 @@ class AppCoordinator: BaseCoordinator {
 // MARK: - Private methods
 private extension AppCoordinator {
     func startController() -> UIViewController {
-        let viewController = MainViewController()
-        let configurator: MainConfiguratorType = MainConfigurator()
+        let viewController = ExploreViewController()
+        let configurator: ExploreConfiguratorType = ExploreConfigurator()
         configurator.configure(viewController: viewController)
         return NewsNavigationController(rootViewController: viewController)
     }

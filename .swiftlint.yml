@@ -17,7 +17,7 @@ excluded:
 - Carthage
 - Pods
 - SwiftLint/Common/3rdPartyLib
-- Weatherly/SupportedFiles/R.generated.swift
+- News/SupportedFiles/R.generated.swift
 line_length:
     warning: 150
     error: 200
