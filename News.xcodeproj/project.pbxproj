@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F47713528E30913009FBC68 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47713428E30913009FBC68 /* ImageProvider.swift */; };
+		1F47713D28E35567009FBC68 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F47713C28E35567009FBC68 /* UIImageView+Extension.swift */; };
 		1F887BC928E0BA3300D15506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F887BC828E0BA3300D15506 /* AppDelegate.swift */; };
 		1F887BCB28E0BA3300D15506 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F887BCA28E0BA3300D15506 /* SceneDelegate.swift */; };
 		1F887BDF28E0BA3300D15506 /* NewsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F887BDE28E0BA3300D15506 /* NewsNavigationController.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F47713428E30913009FBC68 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		1F47713C28E35567009FBC68 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		1F887BC528E0BA3300D15506 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F887BC828E0BA3300D15506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F887BCA28E0BA3300D15506 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				1F887C1028E0E2DD00D15506 /* UITableView+Extension.swift */,
 				1FB7C9A928E104760077C799 /* Data+Extension.swift */,
+				1F47713C28E35567009FBC68 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 			children = (
 				1F887C0828E0D4C400D15506 /* Network */,
 				1FB7C9A728E1039C0077C799 /* RealmManager.swift */,
+				1F47713428E30913009FBC68 /* ImageProvider.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F47713D28E35567009FBC68 /* UIImageView+Extension.swift in Sources */,
 				1F887BDF28E0BA3300D15506 /* NewsNavigationController.swift in Sources */,
 				1F887BF728E0BA3300D15506 /* R.generated.swift in Sources */,
 				1F887C0E28E0D57D00D15506 /* Response.swift in Sources */,
@@ -476,6 +483,7 @@
 				1FB7C9B628E10B690077C799 /* ExploreConfigurator.swift in Sources */,
 				1FB7C9C528E113B60077C799 /* FavoritesConfigurator.swift in Sources */,
 				1FB7C9C628E113B60077C799 /* FavoritesEntity.swift in Sources */,
+				1F47713528E30913009FBC68 /* ImageProvider.swift in Sources */,
 				1F887BCB28E0BA3300D15506 /* SceneDelegate.swift in Sources */,
 				1F887C0C28E0D57D00D15506 /* APIManager.swift in Sources */,
 				1FB7C9C128E113B60077C799 /* FavoritesPresenter.swift in Sources */,
