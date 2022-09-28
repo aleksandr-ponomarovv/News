@@ -11,7 +11,7 @@ import Foundation
 final class ArticleEntity: Decodable {
     let status: String
     let totalResults: Int
-    let articles: [Article]
+    var articles: [Article]
 
     init(status: String, totalResults: Int, articles: [Article]) {
         self.status = status
@@ -21,7 +21,7 @@ final class ArticleEntity: Decodable {
 }
 
 // MARK: - Article
-final class Article: Decodable {
+final class Article: ArticleTableViewCellModel, Decodable {
     let source: Source
     let author: String?
     let title, articleDescription: String
@@ -29,6 +29,10 @@ final class Article: Decodable {
     let urlToImage: String
     let publishedAt: String
     let content: String
+
+    var subtitle: String {
+        "\(publishedAt) \(source.name)"
+    }
 
     enum CodingKeys: String, CodingKey {
         case source, author, title

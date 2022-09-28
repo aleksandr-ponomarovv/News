@@ -11,7 +11,7 @@ protocol FavoritesInteractorType {
     
 }
 
-class FavoritesInteractor: FavoritesInteractorType {
+final class FavoritesInteractor: FavoritesInteractorType {
     
     init() {}
     

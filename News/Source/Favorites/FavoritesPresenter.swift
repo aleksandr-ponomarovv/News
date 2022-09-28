@@ -11,7 +11,7 @@ protocol FavoritesPresenterType {
     
 }
 
-class FavoritesPresenter: FavoritesPresenterType {
+final class FavoritesPresenter: FavoritesPresenterType {
     
     private let interactor: FavoritesInteractorType
     private let router: FavoritesRouterType

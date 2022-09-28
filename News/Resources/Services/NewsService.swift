@@ -9,7 +9,7 @@ import Alamofire
 
 final class NewsService: APIManagerProtocol {
     
-    func getHourly(serchText: String, page: Int, completion: @escaping(Response<ArticleEntity>) -> Void) {
+    func getEverything(serchText: String, page: Int, completion: @escaping(Response<ArticleEntity>) -> Void) {
         let api: NewsApi = .getEverything(serchText: serchText, page: page)
         AF.request(api).responseDecodable(of: ArticleEntity.self) { response in
             print("RESPONSE ENTITY: \(response.data?.json ?? "")")

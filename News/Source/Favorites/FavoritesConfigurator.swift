@@ -11,7 +11,7 @@ protocol FavoritesConfiguratorType {
     func configure(viewController: FavoritesViewController)
 }
 
-class FavoritesConfigurator: FavoritesConfiguratorType {
+final class FavoritesConfigurator: FavoritesConfiguratorType {
     
     func configure(viewController: FavoritesViewController) {
         let interactor = FavoritesInteractor()

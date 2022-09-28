@@ -11,7 +11,7 @@ protocol ExploreRouterType {
     
 }
 
-class ExploreRouter: ExploreRouterType {
+final class ExploreRouter: ExploreRouterType {
     
     private weak var viewController: ExploreViewController?
     

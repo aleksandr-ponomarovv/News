@@ -11,7 +11,7 @@ protocol ExploreConfiguratorType {
     func configure(viewController: ExploreViewController)
 }
 
-class ExploreConfigurator: ExploreConfiguratorType {
+final class ExploreConfigurator: ExploreConfiguratorType {
     
     func configure(viewController: ExploreViewController) {
         let interactor = ExploreInteractor()

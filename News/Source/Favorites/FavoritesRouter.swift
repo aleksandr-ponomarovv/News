@@ -11,7 +11,7 @@ protocol FavoritesRouterType {
     
 }
 
-class FavoritesRouter: FavoritesRouterType {
+final class FavoritesRouter: FavoritesRouterType {
     
     private weak var viewController: FavoritesViewController?
     

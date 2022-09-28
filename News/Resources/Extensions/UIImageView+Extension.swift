@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    func imageFromUrl(urlString: String) {
+    func downloadImage(urlString: String) {
         ImageProvider.shared.fetchImage(urlString: urlString) { image in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

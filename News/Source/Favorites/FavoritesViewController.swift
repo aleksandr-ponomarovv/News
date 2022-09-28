@@ -9,7 +9,7 @@ import UIKit
 
 protocol FavoritesViewType: AnyObject {}
 
-class FavoritesViewController: UIViewController {
+final class FavoritesViewController: UIViewController {
 
     var presenter: FavoritesPresenterType?
 

@@ -8,6 +8,7 @@
 import UIKit
 
 final class ImageProvider {
+    
     static let shared = ImageProvider()
     
     private let concurrentQueue = DispatchQueue(label: "thread-safe-cache", attributes: .concurrent)
@@ -43,7 +44,10 @@ final class ImageProvider {
             }
         }
     }
-    
+}
+
+// MARK: - Private methods
+private extension ImageProvider {
     func getCache(urlNSString: NSString, completion: @escaping (UIImage?) -> Void) {
         concurrentQueue.sync { [weak self] in
             guard let self = self else { return }
