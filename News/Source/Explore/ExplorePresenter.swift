@@ -11,6 +11,7 @@ protocol ExplorePresenterType {
     var numberOfRowsInSection: Int { get }
     var hasMoreNews: Bool { get }
     
+    func viewDidLoad()
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
     func fetchNews(serchText: String)
     func fetchNextPage()
@@ -38,6 +39,10 @@ final class ExplorePresenter: ExplorePresenterType {
         self.view = view
         self.interactor = interactor
         self.router = router
+    }
+    
+    func viewDidLoad() {
+        fetchNews(serchText: "tesla")
     }
     
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {

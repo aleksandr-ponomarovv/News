@@ -14,6 +14,7 @@ protocol ExploreViewType: AnyObject {
 
 final class ExploreViewController: UIViewController {
 
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     
     private lazy var footerView: UIView = {
@@ -27,9 +28,8 @@ final class ExploreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter?.viewDidLoad()
         configureUI()
-        
-        presenter?.fetchNews(serchText: "tesla")
     }
 }
 
@@ -42,6 +42,13 @@ extension ExploreViewController: ExploreViewType {
     
     func hideTableFooterView() {
         tableView.tableFooterView = nil
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension ExploreViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.fetchNews(serchText: searchText)
     }
 }
 
@@ -81,7 +88,13 @@ extension ExploreViewController: UITableViewDelegate {
 // MARK: - Private methods
 private extension ExploreViewController {
     func configureUI() {
+        setupSearchBar()
         setupTableView()
+    }
+    
+    func setupSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search News"
     }
     
     func setupTableView() {

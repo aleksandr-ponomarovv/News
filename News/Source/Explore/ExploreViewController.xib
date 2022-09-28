@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="News" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="TbT-xO-LBH" id="wZE-FX-kqz"/>
                 <outlet property="tableView" destination="5oU-GW-mLM" id="p7w-gA-xq3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
