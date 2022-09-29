@@ -62,7 +62,7 @@
                         </constraints>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="bookmark" catalog="system"/>
+                        <state key="normal" image="bookmark.fill" catalog="system"/>
                         <connections>
                             <action selector="didTapFavoriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dag-2M-oPz"/>
                         </connections>
@@ -99,7 +99,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

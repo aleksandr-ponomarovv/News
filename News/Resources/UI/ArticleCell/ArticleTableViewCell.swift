@@ -33,7 +33,7 @@ final class ArticleTableViewCell: UITableViewCell {
             titleLabel.text = model?.title
             sourceLabel.text = model?.sourceName
             dateLabel.text = model?.date
-            setupFavoriteButton(isFavorite: model?.isFavorite ?? false)
+            favoriteButton.isSelected = model?.isFavorite ?? false
             if let urlString = model?.urlToImage, !urlString.isEmpty {
                 iconImageView.downloadImage(urlString: urlString)
             }
@@ -49,23 +49,24 @@ final class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectionStyle = .none
-        iconImageView.layer.cornerRadius = 3
+        setupUI()
     }
     
     @IBAction private func didTapFavoriteButton(_ sender: UIButton) {
         guard let isFavorite = model?.isFavorite else { return }
         
         model?.isFavorite = !isFavorite
-        setupFavoriteButton(isFavorite: !isFavorite)
+        favoriteButton.isSelected = !isFavorite
         favoriteButtonCompletion?()
     }
 }
 
 // MARK: - Private methods
 private extension ArticleTableViewCell {
-    func setupFavoriteButton(isFavorite: Bool) {
-        let image = isSelected ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
-        favoriteButton.setImage(image, for: .normal)
+    func setupUI() {
+        selectionStyle = .none
+        iconImageView.layer.cornerRadius = 3
+        favoriteButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
+        favoriteButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
     }
 }
