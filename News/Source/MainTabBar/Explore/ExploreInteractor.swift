@@ -5,7 +5,8 @@
 //  Created by Aleksandr on 26.09.2022.
 //
 
-import Foundation
+import Realm
+import RealmSwift
 
 protocol ExploreInteractorType {
     var articleEntity: ArticleEntity? { get }
@@ -14,7 +15,8 @@ protocol ExploreInteractorType {
     
     func fetchNextPage(completion: @escaping (Response<Bool>) -> Void)
     func fetchNews(serchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void)
-    func setupArticleToDatabase(at index: Int)
+    func setupArticleToDatabase(at index: Int, isFavorite: Bool)
+    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<Article>>) -> Void)
 }
 
 final class ExploreInteractor: ExploreInteractorType {
@@ -26,6 +28,7 @@ final class ExploreInteractor: ExploreInteractorType {
     private let newsService = NewsService()
     private var page: Int = 1
     private var serchText: String = ""
+    private var notificationToken: NotificationToken?
     
     var isLastPage: Bool {
         guard let articleEntity = articleEntity else { return false }
@@ -63,14 +66,24 @@ final class ExploreInteractor: ExploreInteractorType {
         }
     }
     
-    func setupArticleToDatabase(at index: Int) {
+    func setupArticleToDatabase(at index: Int, isFavorite: Bool) {
         guard let article = articleEntity?.articles[index] else { return }
         
-        if article.isFavorite {
-            realmManager.addOrUpdate(object: article)
-        } else {
-            realmManager.deleteObject(object: article)
+        realmManager.write { realm in
+            if isFavorite {
+                realm.add(article, update: .all)
+                article.isFavorite = true
+            } else {
+                guard let article = realm.objects(Article.self).first(where: { $0.url == article.url }) else { return }
+                
+                article.isFavorite = false
+                realm.delete(article)
+            }
         }
+    }
+    
+    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<Article>>) -> Void) {
+        notificationToken = realmManager.observeUpdateChanges(type: Article.self, completion)
     }
 }
 

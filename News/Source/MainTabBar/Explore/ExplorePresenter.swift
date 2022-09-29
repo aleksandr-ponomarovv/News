@@ -13,7 +13,7 @@ protocol ExplorePresenterType {
     
     func viewDidLoad()
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
-    func favoriteButtonCompletion(at indexPath: IndexPath) -> (() -> Void)
+    func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void)
     func didSelectArticle(at indexPath: IndexPath)
     func fetchNews(serchText: String)
     func fetchNextPage()
@@ -45,17 +45,18 @@ final class ExplorePresenter: ExplorePresenterType {
     
     func viewDidLoad() {
         fetchNews(serchText: "telegram")
+        subscribeLocationNotification()
     }
     
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {
         return interactor.articleEntity?.articles[indexPath.row]
     }
     
-    func favoriteButtonCompletion(at indexPath: IndexPath) -> (() -> Void) {
-        return { [weak self] in
+    func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void) {
+        return { [weak self] isFavorite in
             guard let self = self else { return }
             
-            self.interactor.setupArticleToDatabase(at: indexPath.row)
+            self.interactor.setupArticleToDatabase(at: indexPath.row, isFavorite: isFavorite)
         }
     }
     
@@ -81,6 +82,19 @@ private extension ExplorePresenter {
             self.view?.updateTableView()
         case .failure(let error):
             self.view?.hideTableFooterView()
+        }
+    }
+    
+    func subscribeLocationNotification() {
+        interactor.subscribeLocationNotification { [weak self] change in
+            guard let self = self else { return }
+            
+            switch change {
+            case .initial, .update:
+                self.view?.updateTableView()
+            case .error:
+                break
+            }
         }
     }
 }

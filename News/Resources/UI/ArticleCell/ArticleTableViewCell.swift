@@ -25,7 +25,7 @@ final class ArticleTableViewCell: UITableViewCell {
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var favoriteButton: UIButton!
     
-    var favoriteButtonCompletion: (() -> Void)?
+    var favoriteButtonCompletion: ((Bool) -> Void)?
     
     var model: ArticleTableViewCellModel? {
         willSet(model) {
@@ -55,9 +55,9 @@ final class ArticleTableViewCell: UITableViewCell {
     @IBAction private func didTapFavoriteButton(_ sender: UIButton) {
         guard let isFavorite = model?.isFavorite else { return }
         
-        model?.isFavorite = !isFavorite
+//        model?.isFavorite = !isFavorite
         favoriteButton.isSelected = !isFavorite
-        favoriteButtonCompletion?()
+        favoriteButtonCompletion?(!isFavorite)
     }
 }
 

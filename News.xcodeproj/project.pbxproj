@@ -39,14 +39,12 @@
 		1FB7C9B428E10B690077C799 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9AD28E10B690077C799 /* ExploreViewController.swift */; };
 		1FB7C9B528E10B690077C799 /* ExploreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9AE28E10B690077C799 /* ExploreInteractor.swift */; };
 		1FB7C9B628E10B690077C799 /* ExploreConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9AF28E10B690077C799 /* ExploreConfigurator.swift */; };
-		1FB7C9B728E10B690077C799 /* ExploreEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9B028E10B690077C799 /* ExploreEntity.swift */; };
 		1FB7C9B828E10B690077C799 /* ExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7C9B128E10B690077C799 /* ExploreViewController.xib */; };
 		1FB7C9C128E113B60077C799 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BA28E113B60077C799 /* FavoritesPresenter.swift */; };
 		1FB7C9C228E113B60077C799 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BB28E113B60077C799 /* FavoritesRouter.swift */; };
 		1FB7C9C328E113B60077C799 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BC28E113B60077C799 /* FavoritesViewController.swift */; };
 		1FB7C9C428E113B60077C799 /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BD28E113B60077C799 /* FavoritesInteractor.swift */; };
 		1FB7C9C528E113B60077C799 /* FavoritesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BE28E113B60077C799 /* FavoritesConfigurator.swift */; };
-		1FB7C9C628E113B60077C799 /* FavoritesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9BF28E113B60077C799 /* FavoritesEntity.swift */; };
 		1FB7C9C728E113B60077C799 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7C9C028E113B60077C799 /* FavoritesViewController.xib */; };
 		1FB7C9CC28E114670077C799 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7C9CA28E114670077C799 /* ArticleTableViewCell.swift */; };
 		1FB7C9CD28E114670077C799 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7C9CB28E114670077C799 /* ArticleTableViewCell.xib */; };
@@ -90,14 +88,12 @@
 		1FB7C9AD28E10B690077C799 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		1FB7C9AE28E10B690077C799 /* ExploreInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreInteractor.swift; sourceTree = "<group>"; };
 		1FB7C9AF28E10B690077C799 /* ExploreConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreConfigurator.swift; sourceTree = "<group>"; };
-		1FB7C9B028E10B690077C799 /* ExploreEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreEntity.swift; sourceTree = "<group>"; };
 		1FB7C9B128E10B690077C799 /* ExploreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreViewController.xib; sourceTree = "<group>"; };
 		1FB7C9BA28E113B60077C799 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		1FB7C9BB28E113B60077C799 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		1FB7C9BC28E113B60077C799 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1FB7C9BD28E113B60077C799 /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
 		1FB7C9BE28E113B60077C799 /* FavoritesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesConfigurator.swift; sourceTree = "<group>"; };
-		1FB7C9BF28E113B60077C799 /* FavoritesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEntity.swift; sourceTree = "<group>"; };
 		1FB7C9C028E113B60077C799 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		1FB7C9CA28E114670077C799 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		1FB7C9CB28E114670077C799 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
@@ -305,7 +301,6 @@
 				1FB7C9AB28E10B690077C799 /* ExplorePresenter.swift */,
 				1FB7C9AE28E10B690077C799 /* ExploreInteractor.swift */,
 				1FB7C9AC28E10B690077C799 /* ExploreRouter.swift */,
-				1FB7C9B028E10B690077C799 /* ExploreEntity.swift */,
 				1FB7C9AF28E10B690077C799 /* ExploreConfigurator.swift */,
 			);
 			path = Explore;
@@ -319,7 +314,6 @@
 				1FB7C9BA28E113B60077C799 /* FavoritesPresenter.swift */,
 				1FB7C9BD28E113B60077C799 /* FavoritesInteractor.swift */,
 				1FB7C9BB28E113B60077C799 /* FavoritesRouter.swift */,
-				1FB7C9BF28E113B60077C799 /* FavoritesEntity.swift */,
 				1FB7C9BE28E113B60077C799 /* FavoritesConfigurator.swift */,
 			);
 			path = Favorites;
@@ -538,7 +532,6 @@
 				1FD71E1E28E4F7A40052F588 /* String+Extension.swift in Sources */,
 				1FB7C9B628E10B690077C799 /* ExploreConfigurator.swift in Sources */,
 				1FB7C9C528E113B60077C799 /* FavoritesConfigurator.swift in Sources */,
-				1FB7C9C628E113B60077C799 /* FavoritesEntity.swift in Sources */,
 				1F47713528E30913009FBC68 /* ImageProvider.swift in Sources */,
 				1F887BCB28E0BA3300D15506 /* SceneDelegate.swift in Sources */,
 				1F887C0C28E0D57D00D15506 /* APIManager.swift in Sources */,
@@ -547,7 +540,6 @@
 				1FB7C9A828E1039C0077C799 /* RealmManager.swift in Sources */,
 				1FB7C9B328E10B690077C799 /* ExploreRouter.swift in Sources */,
 				1FB7C9C228E113B60077C799 /* FavoritesRouter.swift in Sources */,
-				1FB7C9B728E10B690077C799 /* ExploreEntity.swift in Sources */,
 				1F9BB69328E614D700907877 /* WebViewerInteractor.swift in Sources */,
 				1F9BB69128E614D700907877 /* WebViewerRouter.swift in Sources */,
 				1F9BB69228E614D700907877 /* WebViewerViewController.swift in Sources */,
