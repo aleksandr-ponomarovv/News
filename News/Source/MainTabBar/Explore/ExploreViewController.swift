@@ -9,13 +9,19 @@ import UIKit
 
 protocol ExploreViewType: AnyObject {
     func updateTableView()
-    func hideTableFooterView()
+    func hideTableIndicators()
 }
 
 final class ExploreViewController: UIViewController {
 
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        var refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
+        return refresh
+    }()
     
     private lazy var footerView: UIView = {
         let view = FooterLoaderView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
@@ -36,12 +42,14 @@ final class ExploreViewController: UIViewController {
 // MARK: - ExploreViewType
 extension ExploreViewController: ExploreViewType {
     func updateTableView() {
-        hideTableFooterView()
+        tableView.refreshControl?.endRefreshing()
+        tableView.tableFooterView = nil
         tableView.reloadData()
     }
     
-    func hideTableFooterView() {
+    func hideTableIndicators() {
         tableView.tableFooterView = nil
+        tableView.refreshControl?.endRefreshing()
     }
 }
 
@@ -104,5 +112,10 @@ private extension ExploreViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(cellNibType: ArticleTableViewCell.self)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshAction() {
+        presenter?.refreshAction(serchText: searchBar.text)
     }
 }

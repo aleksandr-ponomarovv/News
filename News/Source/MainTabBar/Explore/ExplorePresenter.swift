@@ -12,6 +12,7 @@ protocol ExplorePresenterType {
     var hasMoreNews: Bool { get }
     
     func viewDidLoad()
+    func refreshAction(serchText: String?)
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
     func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void)
     func didSelectArticle(at indexPath: IndexPath)
@@ -44,8 +45,17 @@ final class ExplorePresenter: ExplorePresenterType {
     }
     
     func viewDidLoad() {
-        fetchNews(serchText: "telegram")
+        fetchNews()
         subscribeLocationNotification()
+    }
+    
+    func refreshAction(serchText: String?) {
+        if let serchText = serchText,
+           !serchText.isEmpty {
+            fetchNews(serchText: serchText)
+        } else {
+            fetchNews()
+        }
     }
     
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {
@@ -65,7 +75,7 @@ final class ExplorePresenter: ExplorePresenterType {
         router.showWebViewerScreen(url: url)
     }
     
-    func fetchNews(serchText: String) {
+    func fetchNews(serchText: String = "telegram") {
         interactor.fetchNews(serchText: serchText, page: 1, completion: fetchNewsCompletion)
     }
     
@@ -81,7 +91,7 @@ private extension ExplorePresenter {
         case .success:
             self.view?.updateTableView()
         case .failure(let error):
-            self.view?.hideTableFooterView()
+            self.view?.hideTableIndicators()
         }
     }
     
