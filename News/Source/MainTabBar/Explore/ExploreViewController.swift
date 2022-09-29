@@ -42,8 +42,7 @@ final class ExploreViewController: UIViewController {
 // MARK: - ExploreViewType
 extension ExploreViewController: ExploreViewType {
     func updateTableView() {
-        tableView.refreshControl?.endRefreshing()
-        tableView.tableFooterView = nil
+        hideTableIndicators()
         tableView.reloadData()
     }
     

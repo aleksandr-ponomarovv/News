@@ -90,7 +90,7 @@ private extension ExplorePresenter {
         switch result {
         case .success:
             self.view?.updateTableView()
-        case .failure(let error):
+        case .failure:
             self.view?.hideTableIndicators()
         }
     }
