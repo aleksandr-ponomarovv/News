@@ -12,7 +12,7 @@ protocol ArticleTableViewCellModel {
     var title: String { get }
     var sourceName: String? { get }
     var date: String? { get }
-    var urlToImage: String { get }
+    var urlToImage: String? { get }
     var isFavorite: Bool { get set }
 }
 

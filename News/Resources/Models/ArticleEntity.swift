@@ -29,7 +29,7 @@ final class ArticleEntity: Decodable {
     dynamic var author: String? = ""
     dynamic var title: String = ""
     dynamic var articleDescription: String = ""
-    dynamic var urlToImage: String = ""
+    dynamic var urlToImage: String? = ""
     dynamic var publishedAt: String = ""
     dynamic var content: String = ""
     dynamic var isFavorite: Bool = false
@@ -70,7 +70,7 @@ final class ArticleEntity: Decodable {
         author = try? container.decode(String.self, forKey: .author)
         title = try container.decode(String.self, forKey: .title)
         articleDescription = try container.decode(String.self, forKey: .articleDescription)
-        urlToImage = try container.decode(String.self, forKey: .urlToImage)
+        urlToImage = try? container.decode(String.self, forKey: .urlToImage)
         publishedAt = try container.decode(String.self, forKey: .publishedAt)
         content = try container.decode(String.self, forKey: .content)
     }

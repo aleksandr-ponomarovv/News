@@ -83,7 +83,9 @@ extension ExploreViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ExploreViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectArticle(at: indexPath)
+    }
 }
 
 // MARK: - Private methods
