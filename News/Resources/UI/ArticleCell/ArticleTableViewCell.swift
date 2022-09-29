@@ -10,15 +10,17 @@ import UIKit
 protocol ArticleTableViewCellModel {
     var author: String? { get }
     var title: String { get }
-    var subtitle: String { get }
+    var sourceName: String { get }
+    var date: String? { get }
     var urlToImage: String { get }
 }
 
-class ArticleTableViewCell: UITableViewCell {
+final class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var sourceLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var favoriteButton: UIButton!
     
@@ -26,7 +28,8 @@ class ArticleTableViewCell: UITableViewCell {
         willSet(model) {
             authorLabel.text = model?.author
             titleLabel.text = model?.title
-            subTitleLabel.text = model?.subtitle
+            sourceLabel.text = model?.sourceName
+            dateLabel.text = model?.date
             if let urlString = model?.urlToImage, !urlString.isEmpty {
                 iconImageView.downloadImage(urlString: urlString)
             }
@@ -44,5 +47,9 @@ class ArticleTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         iconImageView.layer.cornerRadius = 3
+    }
+    
+    @IBAction private func didTapFavoriteButton(_ sender: UIButton) {
+        
     }
 }

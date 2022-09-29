@@ -29,9 +29,13 @@ final class Article: ArticleTableViewCellModel, Decodable {
     let urlToImage: String
     let publishedAt: String
     let content: String
-
-    var subtitle: String {
-        "\(publishedAt) \(source.name)"
+    
+    var sourceName: String {
+        source.name
+    }
+    
+    var date: String? {
+        publishedAt.toFormatedDate()
     }
 
     enum CodingKeys: String, CodingKey {
