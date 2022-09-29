@@ -38,7 +38,8 @@ private extension AppCoordinator {
         let viewController = ExploreViewController()
         let configurator: ExploreConfiguratorType = ExploreConfigurator()
         configurator.configure(viewController: viewController)
-        viewController.tabBarItem = UITabBarItem(title: "Explore", image: nil, tag: 0)
+        let image = UIImage(systemName: "magnifyingglass")
+        viewController.tabBarItem = UITabBarItem(title: nil, image: image, tag: 0)
         return viewController
     }
     
@@ -46,7 +47,8 @@ private extension AppCoordinator {
         let viewController = FavoritesViewController()
         let configurator: FavoritesConfiguratorType = FavoritesConfigurator()
         configurator.configure(viewController: viewController)
-        viewController.tabBarItem = UITabBarItem(title: "Favorites", image: nil, tag: 1)
+        let image = UIImage(systemName: "bookmark.fill")
+        viewController.tabBarItem = UITabBarItem(title: nil, image: image, tag: 1)
         return viewController
     }
 }
