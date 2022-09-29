@@ -76,6 +76,7 @@ extension ExploreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(cellType: ArticleTableViewCell.self, for: indexPath)
         cell.model = presenter?.articleCellModel(at: indexPath)
+        cell.favoriteButtonCompletion = presenter?.favoriteButtonCompletion(at: indexPath)
         return cell
     }
 }

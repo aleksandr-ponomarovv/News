@@ -29,9 +29,24 @@ class AppCoordinator: BaseCoordinator {
 // MARK: - Private methods
 private extension AppCoordinator {
     func startController() -> UIViewController {
+        let tabBar = MainTabBarController()
+        tabBar.viewControllers = [exploreScreen(), favoritesScreen()]
+        return tabBar
+    }
+    
+    func exploreScreen() -> UIViewController {
         let viewController = ExploreViewController()
         let configurator: ExploreConfiguratorType = ExploreConfigurator()
         configurator.configure(viewController: viewController)
-        return NewsNavigationController(rootViewController: viewController)
+        viewController.tabBarItem = UITabBarItem(title: "Explore", image: nil, tag: 0)
+        return viewController
+    }
+    
+    func favoritesScreen() -> UIViewController {
+        let viewController = FavoritesViewController()
+        let configurator: FavoritesConfiguratorType = FavoritesConfigurator()
+        configurator.configure(viewController: viewController)
+        viewController.tabBarItem = UITabBarItem(title: "Favorites", image: nil, tag: 1)
+        return viewController
     }
 }

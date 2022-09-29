@@ -13,6 +13,7 @@ protocol ExplorePresenterType {
     
     func viewDidLoad()
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
+    func favoriteButtonCompletion(at indexPath: IndexPath) -> (() -> Void)
     func fetchNews(serchText: String)
     func fetchNextPage()
 }
@@ -47,6 +48,14 @@ final class ExplorePresenter: ExplorePresenterType {
     
     func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {
         return interactor.articleEntity?.articles[indexPath.row]
+    }
+    
+    func favoriteButtonCompletion(at indexPath: IndexPath) -> (() -> Void) {
+        return { [weak self] in
+            guard let self = self else { return }
+            
+            self.interactor.setupArticleToDatabase(at: indexPath.row)
+        }
     }
     
     func fetchNews(serchText: String) {

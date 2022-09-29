@@ -25,6 +25,8 @@ final class RealmManager {
         }
     }
     
+    // MARK: - ADD OR UPDATE
+    
     func addOrUpdate(object: Object) {
         write { realm in
             realm.add(object, update: .all)
@@ -36,6 +38,8 @@ final class RealmManager {
             realm.add(objects, update: .all)
         }
     }
+    
+    // MARK: - GET
     
     func getObject<T: Object, PrimaryKey>(primaryKey: PrimaryKey) -> T? {
         let realm = try? Realm()
@@ -56,6 +60,14 @@ final class RealmManager {
             return Array(result)
         } else {
             return []
+        }
+    }
+    
+    // MARK: - DELETE
+    
+    func deleteObject<T: Object>(object: T) {
+        write { (realm) in
+            realm.delete(object)
         }
     }
     

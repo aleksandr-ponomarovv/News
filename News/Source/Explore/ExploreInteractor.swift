@@ -14,6 +14,7 @@ protocol ExploreInteractorType {
     
     func fetchNextPage(completion: @escaping (Response<Bool>) -> Void)
     func fetchNews(serchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void)
+    func setupArticleToDatabase(at index: Int)
 }
 
 final class ExploreInteractor: ExploreInteractorType {
@@ -21,6 +22,7 @@ final class ExploreInteractor: ExploreInteractorType {
     var articleEntity: ArticleEntity?
     var isLoading: Bool = false
     
+    private let realmManager = RealmManager.shared
     private let newsService = NewsService()
     private var page: Int = 1
     private var serchText: String = ""
@@ -45,6 +47,7 @@ final class ExploreInteractor: ExploreInteractorType {
             self.isLoading = false
             switch result {
             case .success(let articleEntity):
+                self.updateFavoriteStates(articles: articleEntity.articles)
                 switch page {
                 case 1:
                     self.articleEntity = articleEntity
@@ -57,6 +60,28 @@ final class ExploreInteractor: ExploreInteractorType {
             case .failure(let error):
                 completion(.failure(error))
             }
+        }
+    }
+    
+    func setupArticleToDatabase(at index: Int) {
+        guard let article = articleEntity?.articles[index] else { return }
+        
+        if article.isFavorite {
+            realmManager.addOrUpdate(object: article)
+        } else {
+            realmManager.deleteObject(object: article)
+        }
+    }
+}
+
+// MARK: - Private methods
+private extension ExploreInteractor {
+    func updateFavoriteStates(articles: [Article]) {
+        let savedArticles: [Article] = realmManager.getObjects()
+        guard !savedArticles.isEmpty && !articles.isEmpty else { return }
+        
+        savedArticles.forEach { savedArticle in
+            articles.first { $0.url == savedArticle.url }?.isFavorite = true
         }
     }
 }
