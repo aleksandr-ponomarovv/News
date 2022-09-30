@@ -102,11 +102,7 @@ private extension ExploreInteractor {
         let savedArticles: [ArticleRealm] = self.realmManager.getObjects()
         
         for (index, article) in articles.enumerated() {
-            if savedArticles.contains(where: { $0.url == article.url }) {
-                updatedArticles[index].isFavorite = true
-            } else {
-                updatedArticles[index].isFavorite = false
-            }
+            updatedArticles[index].isFavorite = savedArticles.contains(where: { $0.url == article.url })
         }
         return updatedArticles
     }
