@@ -51,7 +51,7 @@ final class ExploreInteractor: ExploreInteractorType {
             self.isLoading = false
             switch result {
             case .success(let articleEntity):
-                articleEntity.articles = self.updateFavoriteStates(articles: articleEntity.articles)
+                self.updateFavoriteStates(articles: articleEntity.articles)
                 switch page {
                 case 1:
                     self.articleEntity = articleEntity
@@ -87,7 +87,7 @@ final class ExploreInteractor: ExploreInteractorType {
     func updateArticles() {
         guard let articles = articleEntity?.articles else { return }
         
-        articleEntity?.articles = updateFavoriteStates(articles: articles)
+        updateFavoriteStates(articles: articles)
     }
     
     func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<ArticleRealm>>) -> Void) {
@@ -97,14 +97,13 @@ final class ExploreInteractor: ExploreInteractorType {
 
 // MARK: - Private methods
 private extension ExploreInteractor {
-    func updateFavoriteStates(articles: [Article]) -> [Article] {
-        var updatedArticles = articles
-        let savedArticles: [ArticleRealm] = self.realmManager.getObjects()
+    func updateFavoriteStates(articles: [Article]) {
+        let savedArticles: [ArticleRealm] = realmManager.getObjects()
+        guard !savedArticles.isEmpty else { return }
         
-        for (index, article) in articles.enumerated() {
-            updatedArticles[index].isFavorite = savedArticles.contains(where: { $0.url == article.url })
+        articles.forEach { article in
+            article.isFavorite = savedArticles.contains { $0.url == article.url }
         }
-        return updatedArticles
     }
     
     func getArticleRealm(article: Article) -> ArticleRealm {

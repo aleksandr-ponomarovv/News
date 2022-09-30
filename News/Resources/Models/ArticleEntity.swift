@@ -21,7 +21,7 @@ final class ArticleEntity: Decodable {
     }
 }
 
-struct Article: ArticleTableViewCellModel, Decodable {
+class Article: ArticleTableViewCellModel, Decodable {
     let url: String
     let source: Source
     let author: String?
