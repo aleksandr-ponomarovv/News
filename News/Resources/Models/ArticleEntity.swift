@@ -21,8 +21,34 @@ final class ArticleEntity: Decodable {
     }
 }
 
+struct Article: ArticleTableViewCellModel, Decodable {
+    let url: String
+    let source: Source
+    let author: String?
+    let title: String
+    let articleDescription: String
+    let urlToImage: String?
+    let publishedAt: String
+    let content: String
+    var isFavorite: Bool = false
+    
+    var sourceName: String? {
+        source.name
+    }
+    
+    var date: String? {
+        publishedAt.toFormatedDate()
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case source, author, title
+        case articleDescription = "description"
+        case url, urlToImage, publishedAt, content
+    }
+}
+
 // MARK: - Article
-@objcMembers final class Article: Object, ArticleTableViewCellModel, Decodable {
+@objcMembers final class ArticleRealm: Object, ArticleTableViewCellModel, Decodable {
     dynamic var url: String = ""
     
     dynamic var source: Source? = .init()

@@ -54,8 +54,7 @@ final class ArticleTableViewCell: UITableViewCell {
     
     @IBAction private func didTapFavoriteButton(_ sender: UIButton) {
         guard let isFavorite = model?.isFavorite else { return }
-        
-//        model?.isFavorite = !isFavorite
+
         favoriteButton.isSelected = !isFavorite
         favoriteButtonCompletion?(!isFavorite)
     }

@@ -13,7 +13,7 @@ protocol ExplorePresenterType {
     
     func viewDidLoad()
     func refreshAction(serchText: String?)
-    func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
+    func articleCellModel(at indexPath: IndexPath) -> Article?
     func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void)
     func didSelectArticle(at indexPath: IndexPath)
     func fetchNews(serchText: String)
@@ -58,7 +58,7 @@ final class ExplorePresenter: ExplorePresenterType {
         }
     }
     
-    func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {
+    func articleCellModel(at indexPath: IndexPath) -> Article? {
         return interactor.articleEntity?.articles[indexPath.row]
     }
     
@@ -101,6 +101,7 @@ private extension ExplorePresenter {
             
             switch change {
             case .initial, .update:
+                self.interactor.updateArticles()
                 self.view?.updateTableView()
             case .error:
                 break

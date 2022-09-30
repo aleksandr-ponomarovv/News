@@ -16,7 +16,8 @@ protocol ExploreInteractorType {
     func fetchNextPage(completion: @escaping (Response<Bool>) -> Void)
     func fetchNews(serchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void)
     func setupArticleToDatabase(at index: Int, isFavorite: Bool)
-    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<Article>>) -> Void)
+    func updateArticles()
+    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<ArticleRealm>>) -> Void)
 }
 
 final class ExploreInteractor: ExploreInteractorType {
@@ -50,7 +51,7 @@ final class ExploreInteractor: ExploreInteractorType {
             self.isLoading = false
             switch result {
             case .success(let articleEntity):
-                self.updateFavoriteStates(articles: articleEntity.articles)
+                articleEntity.articles = self.updateFavoriteStates(articles: articleEntity.articles)
                 switch page {
                 case 1:
                     self.articleEntity = articleEntity
@@ -71,30 +72,55 @@ final class ExploreInteractor: ExploreInteractorType {
         
         realmManager.write { realm in
             if isFavorite {
-                realm.add(article, update: .all)
-                article.isFavorite = true
+                let articleRealm = self.getArticleRealm(article: article)
+                articleRealm.isFavorite = isFavorite
+                realm.add(articleRealm, update: .all)
             } else {
-                guard let article = realm.objects(Article.self).first(where: { $0.url == article.url }) else { return }
-                
-                article.isFavorite = false
+                guard let article = realm.objects(ArticleRealm.self).first(where: { $0.url == article.url }) else { return }
+
                 realm.delete(article)
             }
         }
+        articleEntity?.articles[index].isFavorite = isFavorite
     }
     
-    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<Article>>) -> Void) {
-        notificationToken = realmManager.observeUpdateChanges(type: Article.self, completion)
+    func updateArticles() {
+        guard let articles = articleEntity?.articles else { return }
+        
+        articleEntity?.articles = updateFavoriteStates(articles: articles)
+    }
+    
+    func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<ArticleRealm>>) -> Void) {
+        notificationToken = realmManager.observeUpdateChanges(type: ArticleRealm.self, completion)
     }
 }
 
 // MARK: - Private methods
 private extension ExploreInteractor {
-    func updateFavoriteStates(articles: [Article]) {
-        let savedArticles: [Article] = realmManager.getObjects()
-        guard !savedArticles.isEmpty && !articles.isEmpty else { return }
+    func updateFavoriteStates(articles: [Article]) -> [Article] {
+        var updatedArticles = articles
+        let savedArticles: [ArticleRealm] = self.realmManager.getObjects()
         
-        savedArticles.forEach { savedArticle in
-            articles.first { $0.url == savedArticle.url }?.isFavorite = true
+        for (index, article) in articles.enumerated() {
+            if savedArticles.contains(where: { $0.url == article.url }) {
+                updatedArticles[index].isFavorite = true
+            } else {
+                updatedArticles[index].isFavorite = false
+            }
         }
+        return updatedArticles
+    }
+    
+    func getArticleRealm(article: Article) -> ArticleRealm {
+        let articleRealm = ArticleRealm()
+        articleRealm.url = article.url
+        articleRealm.source = article.source
+        articleRealm.author = article.author
+        articleRealm.title = article.title
+        articleRealm.articleDescription = article.articleDescription
+        articleRealm.urlToImage = article.urlToImage
+        articleRealm.publishedAt = article.publishedAt
+        articleRealm.content = article.content
+        return articleRealm
     }
 }

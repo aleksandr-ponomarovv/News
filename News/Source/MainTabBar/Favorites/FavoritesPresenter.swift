@@ -11,7 +11,7 @@ protocol FavoritesPresenterType {
     var numberOfRowsInSection: Int { get }
     
     func viewDidLoad()
-    func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel?
+    func articleCellModel(at indexPath: IndexPath) -> ArticleRealm?
     func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void)
 }
 
@@ -37,7 +37,7 @@ final class FavoritesPresenter: FavoritesPresenterType {
         subscribeLocationNotification()
     }
     
-    func articleCellModel(at indexPath: IndexPath) -> ArticleTableViewCellModel? {
+    func articleCellModel(at indexPath: IndexPath) -> ArticleRealm? {
         return interactor.articles[indexPath.row]
     }
     
