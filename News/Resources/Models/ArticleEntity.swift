@@ -37,7 +37,7 @@ class Article: ArticleTableViewCellModel, Decodable {
     }
     
     var date: String? {
-        publishedAt.toFormatedDate()
+        publishedAt.toFormattedDate()
     }
     
     enum CodingKeys: String, CodingKey {
@@ -65,7 +65,7 @@ class Article: ArticleTableViewCellModel, Decodable {
     }
     
     var date: String? {
-        publishedAt.toFormatedDate()
+        publishedAt.toFormattedDate()
     }
 
     enum CodingKeys: String, CodingKey {

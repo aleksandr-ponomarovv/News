@@ -37,6 +37,12 @@ final class ExploreViewController: UIViewController {
         presenter?.viewDidLoad()
         configureUI()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        view.endEditing(true)
+    }
 }
 
 // MARK: - ExploreViewType
@@ -55,7 +61,12 @@ extension ExploreViewController: ExploreViewType {
 // MARK: - UISearchBarDelegate
 extension ExploreViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.fetchNews(serchText: searchText)
+        presenter?.fetchNews(searchText: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        presenter?.fetchNews(searchText: searchBar.text ?? "")
+        view.endEditing(true)
     }
 }
 
@@ -112,9 +123,10 @@ private extension ExploreViewController {
         tableView.delegate = self
         tableView.register(cellNibType: ArticleTableViewCell.self)
         tableView.refreshControl = refreshControl
+        tableView.keyboardDismissMode = .onDrag
     }
     
     @objc func refreshAction() {
-        presenter?.refreshAction(serchText: searchBar.text)
+        presenter?.refreshAction(searchText: searchBar.text)
     }
 }

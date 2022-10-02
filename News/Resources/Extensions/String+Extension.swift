@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    func toFormatedDate(from: String = "yyyy-MM-dd'T'HH:mm:ssZ", to: String = "dd-MM-yyyy") -> String? {
+    func toFormattedDate(from: String = "yyyy-MM-dd'T'HH:mm:ssZ", to: String = "dd-MM-yyyy") -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Calendar.current.locale
         dateFormatter.dateFormat = from

@@ -12,11 +12,11 @@ protocol ExplorePresenterType {
     var hasMoreNews: Bool { get }
     
     func viewDidLoad()
-    func refreshAction(serchText: String?)
+    func refreshAction(searchText: String?)
     func articleCellModel(at indexPath: IndexPath) -> Article?
     func favoriteButtonCompletion(at indexPath: IndexPath) -> ((Bool) -> Void)
     func didSelectArticle(at indexPath: IndexPath)
-    func fetchNews(serchText: String)
+    func fetchNews(searchText: String)
     func fetchNextPage()
 }
 
@@ -26,7 +26,7 @@ final class ExplorePresenter: ExplorePresenterType {
     private let router: ExploreRouterType
     private weak var view: ExploreViewType?
     
-    private var serchText: String = ""
+    private var searchText: String = ""
     
     var numberOfRowsInSection: Int {
         interactor.articleEntity?.articles.count ?? 0
@@ -49,10 +49,10 @@ final class ExplorePresenter: ExplorePresenterType {
         subscribeLocationNotification()
     }
     
-    func refreshAction(serchText: String?) {
-        if let serchText = serchText,
-           !serchText.isEmpty {
-            fetchNews(serchText: serchText)
+    func refreshAction(searchText: String?) {
+        if let searchText = searchText,
+           !searchText.isEmpty {
+            fetchNews(searchText: searchText)
         } else {
             fetchNews()
         }
@@ -75,8 +75,10 @@ final class ExplorePresenter: ExplorePresenterType {
         router.showWebViewerScreen(url: url)
     }
     
-    func fetchNews(serchText: String = "telegram") {
-        interactor.fetchNews(serchText: serchText, page: 1, completion: fetchNewsCompletion)
+    func fetchNews(searchText: String = "telegram") {
+        guard !searchText.isEmpty else { return }
+        
+        interactor.fetchNews(searchText: searchText, page: 1, completion: fetchNewsCompletion)
     }
     
     func fetchNextPage() {

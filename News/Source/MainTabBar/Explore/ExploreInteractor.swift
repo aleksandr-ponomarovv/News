@@ -14,7 +14,7 @@ protocol ExploreInteractorType {
     var isLastPage: Bool { get }
     
     func fetchNextPage(completion: @escaping (Response<Bool>) -> Void)
-    func fetchNews(serchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void)
+    func fetchNews(searchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void)
     func setupArticleToDatabase(at index: Int, isFavorite: Bool)
     func updateArticles()
     func subscribeLocationNotification(completion: @escaping(RealmCollectionChange<Results<ArticleRealm>>) -> Void)
@@ -28,7 +28,7 @@ final class ExploreInteractor: ExploreInteractorType {
     private let realmManager = RealmManager.shared
     private let newsService = NewsService()
     private var page: Int = 1
-    private var serchText: String = ""
+    private var searchText: String = ""
     private var notificationToken: NotificationToken?
     
     var isLastPage: Bool {
@@ -40,12 +40,12 @@ final class ExploreInteractor: ExploreInteractorType {
     }
     
     func fetchNextPage(completion: @escaping (Response<Bool>) -> Void) {
-        fetchNews(serchText: serchText, page: page + 1, completion: completion)
+        fetchNews(searchText: searchText, page: page + 1, completion: completion)
     }
     
-    func fetchNews(serchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void) {
+    func fetchNews(searchText: String, page: Int, completion: @escaping (Response<Bool>) -> Void) {
         isLoading = true
-        newsService.getEverything(serchText: serchText, page: page) { [weak self] result in
+        newsService.getEverything(searchText: searchText, page: page) { [weak self] result in
             guard let self = self else { return }
             
             self.isLoading = false
@@ -55,7 +55,7 @@ final class ExploreInteractor: ExploreInteractorType {
                 switch page {
                 case 1:
                     self.articleEntity = articleEntity
-                    self.serchText = serchText
+                    self.searchText = searchText
                 default:
                     self.articleEntity?.articles.append(contentsOf: articleEntity.articles)
                 }

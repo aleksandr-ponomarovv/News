@@ -18,6 +18,12 @@ excluded:
 - Pods
 - SwiftLint/Common/3rdPartyLib
 - News/SupportedFiles/R.generated.swift
+variable_name:
+    max_length:
+        warning: 30
+        error: 45
+    min_length:
+        warning: 2
 line_length:
     warning: 150
     error: 200

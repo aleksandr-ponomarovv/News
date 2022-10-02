@@ -13,11 +13,11 @@ protocol WebViewerViewType: AnyObject {
 }
 
 class WebViewerViewController: UIViewController {
-
+    
     @IBOutlet private weak var webView: WKWebView!
     
     var presenter: WebViewerPresenterType?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,12 +45,12 @@ private extension WebViewerViewController {
     
     func setupNavigationItems() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh,
-                                                           target: self,
-                                                           action: #selector(loadWebView))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done",
-                                                            style: .done,
                                                             target: self,
-                                                            action: #selector(didTapDoneButton))
+                                                            action: #selector(loadWebView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done",
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(didTapDoneButton))
     }
     
     @objc func didTapDoneButton() {

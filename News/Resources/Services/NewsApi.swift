@@ -9,7 +9,7 @@ import Alamofire
 
 enum NewsApi: URLRequestBuilder {
     
-    case getEverything(serchText: String, page: Int)
+    case getEverything(searchText: String, page: Int)
     
     var path: String {
         switch self {
@@ -20,8 +20,8 @@ enum NewsApi: URLRequestBuilder {
     
     var parameters: Parameters? {
         switch self {
-        case .getEverything(let serchText, let page):
-            return ["q": serchText, "page": page, "apiKey": Constants.key, "pageSize": Constants.pageSize]
+        case .getEverything(let searchText, let page):
+            return ["q": searchText, "page": page, "apiKey": Constants.key, "pageSize": Constants.pageSize]
         }
     }
     
