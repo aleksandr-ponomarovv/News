@@ -12,7 +12,7 @@ protocol ArticleTableViewCellModel {
     var title: String { get }
     var sourceName: String? { get }
     var date: String? { get }
-    var urlToImage: String? { get }
+    var imageUrl: String? { get }
     var isFavorite: Bool { get set }
 }
 
@@ -34,7 +34,7 @@ final class ArticleTableViewCell: UITableViewCell {
             sourceLabel.text = model?.sourceName
             dateLabel.text = model?.date
             favoriteButton.isSelected = model?.isFavorite ?? false
-            if let urlString = model?.urlToImage, !urlString.isEmpty {
+            if let urlString = model?.imageUrl, !urlString.isEmpty {
                 iconImageView.downloadImage(urlString: urlString)
             }
         }

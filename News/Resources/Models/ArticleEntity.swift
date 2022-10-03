@@ -27,7 +27,7 @@ class Article: ArticleTableViewCellModel, Decodable {
     let author: String?
     let title: String
     let articleDescription: String
-    let urlToImage: String?
+    let imageUrl: String?
     let publishedAt: String
     let content: String
     var isFavorite: Bool = false
@@ -55,7 +55,7 @@ class Article: ArticleTableViewCellModel, Decodable {
     dynamic var author: String? = ""
     dynamic var title: String = ""
     dynamic var articleDescription: String = ""
-    dynamic var urlToImage: String? = ""
+    dynamic var imageUrl: String? = ""
     dynamic var publishedAt: String = ""
     dynamic var content: String = ""
     dynamic var isFavorite: Bool = false
@@ -84,7 +84,7 @@ class Article: ArticleTableViewCellModel, Decodable {
         self.title = title
         self.articleDescription = articleDescription
         self.url = url
-        self.urlToImage = urlToImage
+        self.imageUrl = urlToImage
         self.publishedAt = publishedAt
         self.content = content
     }
@@ -96,7 +96,7 @@ class Article: ArticleTableViewCellModel, Decodable {
         author = try? container.decode(String.self, forKey: .author)
         title = try container.decode(String.self, forKey: .title)
         articleDescription = try container.decode(String.self, forKey: .articleDescription)
-        urlToImage = try? container.decode(String.self, forKey: .urlToImage)
+        imageUrl = try? container.decode(String.self, forKey: .urlToImage)
         publishedAt = try container.decode(String.self, forKey: .publishedAt)
         content = try container.decode(String.self, forKey: .content)
     }

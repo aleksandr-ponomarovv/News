@@ -113,7 +113,7 @@ private extension ExploreInteractor {
         articleRealm.author = article.author
         articleRealm.title = article.title
         articleRealm.articleDescription = article.articleDescription
-        articleRealm.urlToImage = article.urlToImage
+        articleRealm.imageUrl = article.imageUrl
         articleRealm.publishedAt = article.publishedAt
         articleRealm.content = article.content
         return articleRealm
