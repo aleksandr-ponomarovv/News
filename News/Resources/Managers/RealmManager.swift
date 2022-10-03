@@ -12,7 +12,7 @@ final class RealmManager {
     
     static let shared = RealmManager()
     
-    private var schemaVersion: UInt64 = 1
+    private var schemaVersion: UInt64 = 2
     
     private init() {
         prepareRealmDatabase()

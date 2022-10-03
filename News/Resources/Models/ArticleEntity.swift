@@ -44,7 +44,9 @@ class Article: ArticleTableViewCellModel, Decodable {
     enum CodingKeys: String, CodingKey {
         case source, author, title
         case articleDescription = "description"
-        case url, imageUrl, publishedAt, content
+        case url
+        case imageUrl = "urlToImage"
+        case publishedAt, content
     }
 }
 
