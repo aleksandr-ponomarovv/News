@@ -22,6 +22,7 @@ final class ArticleEntity: Decodable {
 }
 
 class Article: ArticleTableViewCellModel, Decodable {
+    
     let url: String
     let source: Source
     let author: String?
@@ -43,7 +44,7 @@ class Article: ArticleTableViewCellModel, Decodable {
     enum CodingKeys: String, CodingKey {
         case source, author, title
         case articleDescription = "description"
-        case url, urlToImage, publishedAt, content
+        case url, imageUrl, publishedAt, content
     }
 }
 
@@ -116,11 +117,11 @@ class Article: ArticleTableViewCellModel, Decodable {
 
 // MARK: - Source
 @objcMembers final class Source: Object, Decodable {
-    dynamic var identifire: String? = ""
+    dynamic var id: String? = ""
     dynamic var name: String = ""
     
     enum CodingKeys: String, CodingKey {
-        case identifire = "id"
+        case id
         case name
     }
 
@@ -128,14 +129,14 @@ class Article: ArticleTableViewCellModel, Decodable {
         return "name"
     }
     
-    init(identifire: String?, name: String) {
-        self.identifire = identifire
+    init(id: String?, name: String) {
+        self.id = id
         self.name = name
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        identifire = try? container.decode(String.self, forKey: .identifire)
+        id = try? container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
     }
     
